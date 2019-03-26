@@ -10,8 +10,6 @@ export class HotelItemComponent implements OnInit {
   @Input() hotelDetails;
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.hotelDetails);
-  }
+  ngOnInit() { }
 
 }

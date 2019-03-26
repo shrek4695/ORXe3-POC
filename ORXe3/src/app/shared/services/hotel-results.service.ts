@@ -23,12 +23,12 @@ export class HotelResultsService {
 
 
 
-  setSessionId(sessionId) {
-    this._sessionId = sessionId;
-  }
-  getFinalResults(response) {
+  // setSessionId(sessionId) {
+  //   this._sessionId = sessionId;
+  // }
+  getFinalResults(sessionId) {
     var ResultBody = {
-      "sessionId": this._sessionId,
+      "sessionId": sessionId,
       "paging": {
         "pageNo": 1,
         "pageSize": 10,
@@ -36,7 +36,7 @@ export class HotelResultsService {
       },
       "currency": "USD",
       "contentPrefs": [
-        "Basic"
+        "All"
       ],
       "filters": {
         "minHotelPrice": 1,
@@ -56,39 +56,29 @@ export class HotelResultsService {
         "availablePointBalance": 70000
       }
     };
-    console.log("sess", this._sessionId);
-    if (response['status'] == "Completed") {
+    
       return this.http.post(this.siteResultUrl, JSON.stringify(ResultBody), { headers: this.header })
-    }
   }
 
-  setHotelResults(HotelResults) {
-    console.log("helll", HotelResults);
-    this.HotelResults = HotelResults;
-    console.log('checker', this.getHotelResults());
-  }
+  // setHotelResults(HotelResults) {
+  //   console.log("helll", HotelResults);
+  //   this.HotelResults = HotelResults;
+  //   console.log('checker', this.getHotelResults());
+  // }
 
-  getHotelResults() {
-    return this.HotelResults;
-  }
+  // getHotelResults() {
+  //   return this.HotelResults;
+  // }
 
-  checkHotelStatus() {
-
-    var header = new HttpHeaders({
-      "cnx-correlationid": "01ed866c-156e-497c-b2e5-2e40b26a9bc2",
-      "cnx-userip": "127.0.0.1",
-      "cnx-tenantid": "2qiohrc1jb4",
-      "Content-Type": "application/json",
-      "Accept-Language": "en-US",
-      "crossDomain": "true"
-    });
+  checkHotelStatus(sessionId) {
 
     var StatusBody = {
-      "sessionId": this._sessionId
+      "sessionId": sessionId
     }
 
     var siteStatusUrl = 'https://hotel-loyalty.stage.cnxloyalty.com/hotel/v1.0/search/status';
 
-    return this.http.post(siteStatusUrl, JSON.stringify(StatusBody), { headers: header })
+    return this.http.post(siteStatusUrl, JSON.stringify(StatusBody), { headers: this.header })
   }
+
 }

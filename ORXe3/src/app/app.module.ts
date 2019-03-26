@@ -2,6 +2,9 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { TrialModule } from './trial/trial.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { HotelResultsComponent } from './components/hotel-results-view/hotel-results/hotel-results.component';
@@ -10,8 +13,14 @@ import { HotelResultsViewComponent } from './components/hotel-results-view/hotel
 import { HotelSortContainerComponent } from './components/hotel-results-view/hotel-sort-container/hotel-sort-container.component';
 import { HotelItemComponent } from './components/hotel-results-view/hotel-results/hotel-item/hotel-item.component';
 
-import { HotelResultsService } from './shared/hotel-results.service';
+import { HotelResultsService } from './shared/services/hotel-results.service';
+import { AnalyticsService } from './shared/services/analytics.service';
 import { TaviscaOrxe3LibraryModule } from 'tavisca-orxe3-library';
+import { HotelReducer } from './shared/reducers/hotel.reducer';
+import { SessionIdReducer } from './shared/reducers/sessionId.reducer';
+import { HotelEffects } from './shared/effects/hotel.effects';
+import { AnalyticsEffect } from './shared/effects/analytics.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +33,17 @@ import { TaviscaOrxe3LibraryModule } from 'tavisca-orxe3-library';
   imports: [
     BrowserModule,
     HttpClientModule,
-    TaviscaOrxe3LibraryModule
+    TaviscaOrxe3LibraryModule,
+    TrialModule,
+    StoreModule.forRoot({}),
+    //StoreModule.forFeature('Analytics', ),
+    StoreModule.forFeature('hotels', HotelReducer),
+    StoreModule.forFeature('SessionId', SessionIdReducer),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([HotelEffects, AnalyticsEffect ])
   ],
-  providers: [HotelResultsService],
+  providers: [HotelResultsService,AnalyticsService],
+  //bootstrap: [AppComponent]
   entryComponents: [HotelResultsContainerComponent]
 })
 export class AppModule { 

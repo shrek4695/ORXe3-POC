@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HotelResultsService } from '../../shared/hotel-results.service';
+import { Store, select } from '@ngrx/store';
+import * as appState from '../../shared/interfaces/app.state';
+import * as sessionIdActions from '../../shared/actions/sessionId.action';
+import * as hotelActions from '../../shared/actions/hotel.action';
 @Component({
   selector: 'app-hotel-results-container',
   templateUrl: './hotel-results-container.component.html',
@@ -8,12 +11,45 @@ import { HotelResultsService } from '../../shared/hotel-results.service';
 export class HotelResultsContainerComponent implements OnInit {
   @Input() hi;
   HotelResults;
-  constructor(private hotelResultsService: HotelResultsService) {
-    
+  constructor(private store: Store<appState.AppState>) {
+
   }
 
-
   ngOnInit() {
+    console.log('checkinggg', this.hi);
+    // this.hotelResultsService.setSessionId(this.hi);
+    this.store.dispatch(new sessionIdActions.SetSessionId(this.hi));
+
+    this.store.pipe(select(appState.getSessionId)).subscribe(SessionId => {
+      console.log('checking', SessionId)
+    });
+
+
+
+    //console.log(" hotel check status ",this.store.select(appState.getHotelCheckStatus));
+
+    this.store.pipe(select(appState.getHotelCheckStatus)).subscribe(CheckStatus => {
+      if (CheckStatus) {
+        console.log("CheckStatus ", CheckStatus)
+        this.store.pipe(select(appState.getHotelResultsStatus)).subscribe(ResultStatus => {
+          if (ResultStatus) {
+            console.log("ResultStatus", ResultStatus);
+            this.store.pipe(select(appState.getHotel)).subscribe(hotelResults => {
+              this.HotelResults = hotelResults
+            })
+          } else {
+            console.log("Hotel Load");
+            this.store.dispatch(new hotelActions.HotelResultsLoad(this.hi))
+          }
+        })
+      } else {
+        console.log("Check Status Load");
+        this.store.dispatch(new hotelActions.CheckStatusLoad(this.hi));
+      }
+    })
+
+
+
     var mockData = {
       "sessionId": "0f8fad5b-d9cb-461f-a165-70867728951z",
       "hotels": [
@@ -259,20 +295,23 @@ export class HotelResultsContainerComponent implements OnInit {
       }
     };
 
-    this.hotelResultsService.setSessionId(this.hi);
-    this.hotelResultsService.checkHotelStatus().subscribe((data) => {
-      if (data['status'] == 'Completed') {
-        let Observable = this.hotelResultsService.getFinalResults(data);
-        Observable.subscribe((data) => {
-          this.hotelResultsService.setHotelResults(data['hotels']);
-          this.HotelResults = this.hotelResultsService.getHotelResults();
-        },
-          (error) => {
-            console.log("error");
-            this.hotelResultsService.setHotelResults(mockData['hotels']);
-          })
-      };
-    });
+
+
+
+    // this.hotelResultsService.checkHotelStatus().subscribe((data) => {
+    //   if (data['status'] == 'Completed') {
+    //     let Observable = this.hotelResultsService.getFinalResults(data);
+    //     Observable.subscribe((data) => {
+    //       this.hotelResultsService.setHotelResults(data['hotels']);
+    //       this.HotelResults = this.hotelResultsService.getHotelResults();
+    //     },
+    //       (error) => {
+    //         console.log("error");
+    //         this.hotelResultsService.setHotelResults(mockData['hotels']);
+    //         this.HotelResults = this.hotelResultsService.getHotelResults();
+    //       })
+    //   };
+    // });
 
   }
 }
