@@ -2,18 +2,13 @@ import { Action } from '@ngrx/store';
 import { Hotel } from '../interfaces/hotel.state';
 
 export enum HotelActionTypes {
-    SearchHotel = '[Hotel] Search Hotels',
     CheckStatusLoad = '[Hotels] Check Status Load',
     CheckStatusLoadSuccess = '[Hotels] Check Status Load Success',
     CheckStatusLoadFail = '[Hotels] Check Status Load Fail',
     HotelResultsLoad = '[Hotels] Hotel Results Load',
     HotelResultsLoadSuccess = '[Hotels] Hotel Results Load Success',
-    HotelResultsLoadFail = '[Hotels] Hotel Results Load Fail'
-}
-
-export class SearchHotel implements Action {
-    readonly type = HotelActionTypes.SearchHotel;
-    constructor(public payload: Hotel[]) { }
+    HotelResultsLoadFail = '[Hotels] Hotel Results Load Fail',
+    HotelSelected = '[Hotels] Hotel Selected'
 }
 
 export class CheckStatusLoad implements Action {
@@ -46,10 +41,15 @@ export class HotelResultsLoadFail implements Action {
     constructor(public payload: String) { }
 }
 
-export type HotelActions = SearchHotel
-                        | CheckStatusLoad 
+export class HotelSelected implements Action {
+    readonly type = HotelActionTypes.HotelSelected;
+    constructor(public payload: Object) { }
+}
+
+export type HotelActions = CheckStatusLoad 
                         | CheckStatusLoadSuccess 
                         | CheckStatusLoadFail 
                         | HotelResultsLoad
                         | HotelResultsLoadSuccess
-                        | HotelResultsLoadFail ;
+                        | HotelResultsLoadFail 
+                        | HotelSelected ;

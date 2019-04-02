@@ -6,51 +6,58 @@ export interface HotelState {
     HotelSessionId: String;
     hotels: Hotel[];
     HotelCheckStatus: boolean;
+    AnalyticsData: {};
     HotelResultsComplete: boolean;
+    SelectedHotel: Hotel;
 }
 
 const initialState: HotelState = {
     HotelSessionId: '',
     hotels: [],
     HotelCheckStatus: false,
-    HotelResultsComplete: false
+    AnalyticsData: null,
+    HotelResultsComplete: false,
+    SelectedHotel: null
 }
 
 export function HotelReducer(state: HotelState = initialState, action: HotelActions): HotelState {
     let hotelDetails;
+    debugger;
     switch (action.type) {
-        case HotelActionTypes.SearchHotel:
-            hotelDetails = {
-                ...state,
-                HotelSessionId: action.payload
-            };
-            break;
         case HotelActionTypes.CheckStatusLoadSuccess:
-            console.log("Check Status", action.payload)
+        console.log("succsesss");
             hotelDetails = {
                 ...state,
-                HotelCheckStatus: action.payload['status'] == 'Completed' ? true : false
+                HotelCheckStatus: action.payload['status'] == 'Completed' ? true : false,
+                AnalyticsData: action.payload['analyticData']
             }
             break;
         case HotelActionTypes.HotelResultsLoadSuccess:
-            console.log("Hotel Results", action.payload)
             hotelDetails = {
                 ...state,
                 HotelResultsComplete: true,
                 hotels: action.payload['hotels'],
-                HotelSessionId: action.payload['sessionId']
+                HotelSessionId: action.payload['sessionId'],
+                AnalyticsData: action.payload['analyticData']
             }
             break;
         case HotelActionTypes.HotelResultsLoadFail:
-            console.log("Hotel Results Fail", action.payload)
             hotelDetails = {
-                ...state
+                ...state,
+                AnalyticsData: action.payload['analyticData']
             }
             break;
         case HotelActionTypes.CheckStatusLoadFail:
-            console.log("Check Status Fail", action.payload)
             hotelDetails = {
-                ...state
+                ...state,
+                AnalyticsData: action.payload['analyticData']
+            }
+            break;
+        case HotelActionTypes.HotelSelected:
+            hotelDetails = {
+                ...state,
+               SelectedHotel: action.payload['eventData'],
+               AnalyticsData: action.payload
             }
             break;
         default:

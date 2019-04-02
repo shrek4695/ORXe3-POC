@@ -20,6 +20,7 @@ import { HotelReducer } from './shared/reducers/hotel.reducer';
 import { SessionIdReducer } from './shared/reducers/sessionId.reducer';
 import { HotelEffects } from './shared/effects/hotel.effects';
 import { AnalyticsEffect } from './shared/effects/analytics.effects';
+import { ServiceUtilitiesService } from './shared/services/service-utilities.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AnalyticsEffect } from './shared/effects/analytics.effects';
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([HotelEffects, AnalyticsEffect ])
   ],
-  providers: [HotelResultsService,AnalyticsService],
+  providers: [HotelResultsService,AnalyticsService, ServiceUtilitiesService],
   //bootstrap: [AppComponent]
   entryComponents: [HotelResultsContainerComponent]
 })

@@ -7,6 +7,10 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
-
-platformBrowserDynamic().bootstrapModule(AppModule)
+if(customElements.get('app-hotel-results-container')) {
+  console.log('First Component already defined -> nothing to do');
+}
+else {
+  platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+}

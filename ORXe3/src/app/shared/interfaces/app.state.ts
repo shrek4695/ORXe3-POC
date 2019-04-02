@@ -30,3 +30,13 @@ export const getHotel = createSelector(
     getHotelFeatureState,
     state => state.hotels
 );
+
+export const getSelectedHotel = createSelector(
+    getHotelFeatureState,
+    state => state.SelectedHotel
+)
+
+export const getAnalyticData = createSelector(
+    getHotelFeatureState,
+    state => state.AnalyticsData
+)

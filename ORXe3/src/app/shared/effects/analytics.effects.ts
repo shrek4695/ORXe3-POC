@@ -63,9 +63,7 @@ export class AnalyticsEffect {
         ofType(analyticsActions.AnalyticsActionTypes.AnalyticsDataLoad),
         map((action: analyticsActions.AnalyticsDataLoad) => action.payload),
         exhaustMap((data) => {
-            console.log('dump data effects', data);
             let user = eventsList.find(item => item.id == data['id']);
-            console.log("events List", user);
             this.analyticData = {
                 eventName: user.name,
                 eventId: user.id,
