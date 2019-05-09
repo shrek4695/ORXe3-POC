@@ -1,0 +1,36 @@
+<div id="MiniCartWrapper" class="js-mini-cart-wrapper mini-cart-wrapper"></div>
+
+<div class="header-wrapper">
+  <div class="header-panel-container">
+    <header class="site-header clearfix">
+
+    <div class="header-branding js-header-backToHome">
+      <a href="{{T.Utility.GenerateSiteUrl('')}}" title="{{'Header.Link.Deals' | translate}}" data-qaid="Link_Home">
+        <img src="{{T.LogoUrl}}" alt="{{'Header.AltText.MainLogo' | translate}}" />
+      </a>
+    </div>
+    <!-- [Configuration Start] Header_Enable_Controls (!(_configurations[ClientName].Header_Enable_Controls))  -->
+    <div class="header-controls">
+      <div class="header-member-info">
+        <div class="header-member-info-content">
+          <!--  -->
+        </div>
+        <!-- [Configuration Start] Header_Enable_MemberNavigation (!(_configurations[ClientName].Header_Enable_MemberNavigation))  -->
+        <div class="member-navigation clearfix">
+          <ul>
+            <li><a href="{{T.Utility.GenerateSiteUrl('MyRewards')}}" class="js-header-rewards-home" data-qaid="Link_RewardsHome">{{ 'Header.Link.RewardsHome' | translate }}</a></li>
+            <li><a href="{{T.Utility.GenerateSiteUrl('MyProfile')}} " data-qaid="Link_MyProfile">{{ 'Header.Link.Profile' | translate }}</a></li>
+            <li><a href="{{T.Utility.GenerateSiteUrl('MyTrips')}}" class="js-my-trips" data-qaid="Link_MyTrips">{{ 'Header.Link.MyTrips' | translate }}
+              <span class="js-schedule-change-count schedule-change-count hidden"></span></a></li>
+            <li *ngIf = "T.Settings.User.Authenticated" class="no-border"><a href="#" class="js-sign-out" data-qaid="Link_SignOut">{{ 'Header.Link.SignOut' | translate }}</a></li>
+            <li *ngIf = "!T.Settings.User.Authenticated"><a href="T.Utility.GenerateSiteUrl('#Account') " class="js-sign-in" data-qaid="Link_SignIn">{{ 'Header.Link.SignIn' | translate }}</a></li>
+            <li *ngIf = "!T.Settings.User.Authenticated" class="no-border"><a href="T.Utility.GenerateSiteUrl('#Register') " class="js-register" data-qaid="Link_Register">{{ 'Header.Link.Register' | translate }}</a></li>
+          </ul>
+        </div>
+        <!-- [Configuration End] Header_Enable_MemberNavigation -->
+      </div>
+    </div>
+    <!-- [Configuration End] Header_Enable_Controls -->
+    </header>
+  </div>
+</div>

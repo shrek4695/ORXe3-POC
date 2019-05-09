@@ -1,0 +1,26 @@
+// .visually-hidden {
+//     @include visuallyhidden;
+//   }
+@import '_breakpoints.scss';
+
+  @mixin respond-min($min) {
+    @media screen and (min-width: $min) {
+        background-color: purple;
+	    @content;
+	}
+}
+
+
+
+.clearfix {
+    @extend %clearfix;
+  }
+
+  %clearfix {
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  
+  }

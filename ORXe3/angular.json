@@ -38,7 +38,7 @@
               }
             ],
             "styles": [
-              "src/styles/root/_root.scss"
+              "src/styles/root/main.scss"
             ],
             "scripts": [
               {

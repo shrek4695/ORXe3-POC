@@ -1,0 +1,27 @@
+$dir: ltr !default;
+
+// Default $dir if not valid
+@if $dir != ltr and $dir != rtl {
+    $dir: ltr;
+}
+
+@function if-ltr($if, $else: null) {
+  @if $dir != rtl {
+    @return $if;
+  }
+  @else {
+    @return $else;
+  }
+}
+
+@function if-ltr($if, $else: null) {
+    @if $dir != rtl {
+      @return $if;
+    }
+    @else {
+      @return $else;
+    }
+  }
+
+$left: if-ltr(left, right);
+$right: if-ltr(right, left);

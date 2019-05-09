@@ -1,0 +1,64 @@
+//*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+//*::::::::::::::::::::::::::::::::::::::::: Breakpoints ::::::::::::::::::::::::::::::::::::::::::::::::::*/
+//*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+//* BREAKPOINT WIDTHS - These are calculated to an em of 16px */
+$breakpoints: ( 
+    mobile: (
+        bp-small: 415px,
+        bp-sm-med: 481px,
+        bp-sm-mid-tab: 600px
+    ),
+    tablet: (
+        bp-medium: 769px
+    ),
+    desktop: (
+        bp-large: 1260px,
+        bp-max: 1281px
+    )
+) !default;
+
+// typical device targets
+
+$bp-max: getBreakpoint($breakpoints, bp-max) !default;
+$bp-large: getBreakpoint($breakpoints,  bp-large) !default;
+$bp-medium: getBreakpoint($breakpoints, bp-medium) !default;
+$bp-sm-med: getBreakpoint($breakpoints, bp-sm-med) !default;
+$bp-sm-mid-tab: getBreakpoint($breakpoints, bp-sm-mid-tab) !default;
+$bp-small: getBreakpoint($breakpoints, bp-small) !default;
+
+// maximum width of content section
+$content-max-width: 1124px !default;
+$header-footer-max-width: 1260px !default;
+
+// container where content needs to be narrow (payment options, etc.)
+$page-container-narrow: 850px !default;
+$search-max-width: 1024px !default;
+
+$breakpointsGridSystem: (
+    xs: 0,
+    sm: 481px,
+    md: 577px, 
+    lg: 769px,
+    xl: 993px
+);
+
+@function getBreakpoint($list, $property) {
+    $val: '';
+
+    @each $prop, $value in $list {
+        @if type-of($value) == map {
+            @each $subprop, $subval in $value {
+                @if $subprop == $property {
+                    $val: $subval;
+                }
+            }
+        } @else {
+            @if $prop == $property {
+                $val: $value;
+            }
+        }
+    }
+
+    @return $val;
+}

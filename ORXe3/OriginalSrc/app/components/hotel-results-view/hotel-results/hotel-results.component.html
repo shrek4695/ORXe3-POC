@@ -1,0 +1,7 @@
+<ul class="hotelresults-list-container results-container">
+  <li *ngFor="let hotelDetails of HotelResults" class="js-hotel-result">
+    <!-- <enl-hotel-item [hotelDetails] = "hotelDetails" (hotelSelected)="onHotelSelected($event)"></enl-hotel-item> -->
+    <app-hotel-item [hotelDetails] = "hotelDetails"></app-hotel-item>
+    <!-- <enl-hotel-item [hotelDetails] = "hotelDetails"></enl-hotel-item> -->
+  </li>
+</ul>

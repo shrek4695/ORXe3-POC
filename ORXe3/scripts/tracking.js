@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const app = express();
 app.use(express.json());
 const MongoClient = require('mongodb').MongoClient;
@@ -9,15 +8,7 @@ app.use(cors());
 app.options('*', cors());
 
 app.post('/tracker', (req, res) => {
-    console.log("hi");
-
     const uri = "mongodb+srv://sa:test123@cluster0-cnbxu.mongodb.net/test?retryWrites=true";
-    // const client = new MongoClient(uri, { useNewUrlParser: true });
-    // client.connect(err => {
-    //     const collection = client.db("Hotel").collection("ORXe");
-    //     // perform actions on the collection object
-    //     client.close();
-    // });
     MongoClient.connect(uri, { useNewUrlParser: true } , (err, client) => {
         const collection = client.db("ORXe").collection("ORXeAnalytics");
         console.log("connected");

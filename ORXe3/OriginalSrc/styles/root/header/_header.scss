@@ -1,0 +1,177 @@
+@import 'header-theme.scss';
+@import '../utility.scss';
+
+.header-wrapper {
+	background-color: $global-nav-bar-background;
+}
+
+.header-panel-container {
+	border-bottom: $border-width-nav $border-color-nav $border-style-nav;
+	background-color: $header-background-color;
+}
+
+.header-branding, .header-branding-container {
+	position: relative;
+	top: $header-position-from-top;
+	float: $left;
+
+
+	a {
+		display: block;
+		height: $header-height;
+
+		img {
+			max-width: 100%;
+			margin-top: $header-logo-top-margin;
+			max-height: $header-height;
+		}
+	}
+}
+
+.header-branding {
+	width: 80%;
+	@include respond-min($bp-medium) {
+		width: 30%;
+	}
+}
+
+.site-header {
+    @extend %clearfix;
+    height: $header-height;
+
+    @include respond-min($bp-medium) {
+        max-width: $header-footer-max-width;
+        margin: 0 auto;
+    }
+
+    .header-branding, .header-branding-container {
+        position: relative;
+        top: $header-position-from-top;
+        float: $left;
+
+
+        a {
+            display: block;
+            height: $header-height;
+
+            img {
+                max-width: 100%;
+                margin-top: $header-logo-top-margin;
+                max-height: $header-height;
+            }
+        }
+    }
+
+    .header-branding {
+        width: 80%;
+        @include respond-min($bp-medium) {
+            width: 30%;
+        }
+    }
+
+    .header-controls, .header-controls-container {
+        display: none;
+        // when not in mobile, display content
+        @include respond-min($bp-medium) {
+            display: block;
+            float: $right;
+            text-align: $right;
+
+            .header-member-info {
+                display: inline-block;
+                text-align: $right;
+                margin-#{$right}: 2%;
+                vertical-align: top;
+                position: relative;
+                min-height: $header-height;
+
+                span:first-of-type {
+                    margin-top: 5px;
+                }
+
+                span {
+                    display: block;
+                }
+                // Profile, My Trips, and Sign Out links
+                .member-navigation {
+                    position: absolute;
+                    bottom: 0;
+                    #{$right}: 0;
+
+                    ul {
+                        font-size: .85em;
+                        padding-bottom: 0;
+                        margin-bottom: 5px;
+
+                        li {
+                            display: inline-block;
+                            padding: 0;
+                            margin: 0;
+                            border-right: 1px solid $border-color-default;
+                            padding: 0 .5em;
+                        }
+
+                        li.no-border {
+                            border-#{$right}: none;
+                            padding-#{$right}: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.site-header {
+    img {
+        display: block;
+    }
+
+    .header-controls-container .header-member-info {
+        color: $color-white;
+        height: 4rem;
+        margin-right: 0px !important;
+
+        div.member-navigation {
+            right: 8px;
+        }
+
+        a {
+            color: $header-link-color;
+        }
+    }
+
+    .header-menu {
+        transform: none;
+    }
+
+    div.header-branding-container a {
+        @media(max-width: $bp-large) {
+            padding-left: 10px;
+        }
+    }
+}
+
+.header-controls {
+    @include respond-min($bp-medium) {
+        width: 70%;
+    }
+
+    .header-member-info {
+        width: 60%;
+    }
+}
+
+.header-controls .header-member-info .member-navigation,
+.header-controls .header-member-info .member-info-navigation, 
+.menu-panel {
+    .schedule-change-count {
+        color: $color-white;
+        background-color: $color-red;
+        padding: 2px 5px;
+        display: inline;
+        border-radius: 4px;
+        margin: 0 2px;
+    }
+}
+
