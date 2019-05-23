@@ -2,9 +2,9 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TrialModule } from './trial/trial.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HotelResultsComponent } from './components/hotel-results-view/hotel-results/hotel-results.component';
@@ -25,6 +25,7 @@ import { HeaderModule } from './header/header.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -42,8 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     TaviscaOrxe3LibraryModule,
-    TrialModule,
     HeaderModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

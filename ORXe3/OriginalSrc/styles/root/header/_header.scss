@@ -7,7 +7,11 @@
 
 .header-panel-container {
 	border-bottom: $border-width-nav $border-color-nav $border-style-nav;
-	background-color: $header-background-color;
+    background-color: $header-background-color;
+    display: flex;
+    .minicart {
+        float: right;
+    }
 }
 
 .header-branding, .header-branding-container {
@@ -29,15 +33,15 @@
 }
 
 .header-branding {
-	width: 80%;
+	width: 65%;
 	@include respond-min($bp-medium) {
 		width: 30%;
 	}
 }
 
 .site-header {
-    @extend %clearfix;
     height: $header-height;
+    flex: 1;
 
     @include respond-min($bp-medium) {
         max-width: $header-footer-max-width;
@@ -48,7 +52,6 @@
         position: relative;
         top: $header-position-from-top;
         float: $left;
-
 
         a {
             display: block;
@@ -62,17 +65,9 @@
         }
     }
 
-    .header-branding {
-        width: 80%;
-        @include respond-min($bp-medium) {
-            width: 30%;
-        }
-    }
-
     .header-controls, .header-controls-container {
-        display: none;
         // when not in mobile, display content
-        @include respond-min($bp-medium) {
+        
             display: block;
             float: $right;
             text-align: $right;
@@ -102,13 +97,15 @@
                         font-size: .85em;
                         padding-bottom: 0;
                         margin-bottom: 5px;
+                        display: flex;
+                        list-style: none;
 
                         li {
                             display: inline-block;
                             padding: 0;
-                            margin: 0;
                             border-right: 1px solid $border-color-default;
                             padding: 0 .5em;
+                            margin: 10px;
                         }
 
                         li.no-border {
@@ -118,7 +115,7 @@
                     }
                 }
             }
-        }
+        
     }
 }
 
@@ -153,12 +150,9 @@
 }
 
 .header-controls {
-    @include respond-min($bp-medium) {
-        width: 70%;
-    }
-
+    width: 35%;
     .header-member-info {
-        width: 60%;
+        width: 100%;
     }
 }
 

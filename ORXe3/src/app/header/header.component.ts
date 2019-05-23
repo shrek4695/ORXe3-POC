@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-header',
   //[build:configuration TemplateUrl_Header_Main || 'header]
   templateUrl: //[Configuration Start] Header_Enable_CustomHTML ((_configurations[ClientName].Header_Enable_CustomHTML.enableHTML))
- './header.component.html',
- //[Configuration End] Header_Enable_CustomHTML
+  './header.component.html',
+  //[Configuration End] Header_Enable_CustomHTML
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {

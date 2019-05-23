@@ -1,31 +1,35 @@
 {
     "_root": {
         "enableSorting": true,
-        "enableFilter": true,
         "Header_Enable_Controls": true,
         "Global_Enable_DisplayUserName": true,
         "Header_Enable_MemberNavigation": true,
         "Header_Enable_CustomHTML": {
             "enableHTML": false,
             "replaceText": ""
-        }
+        },
+        "Header_Enable_MiniCart": true
     },
     "ORXe3-Client1": {
         "enableSorting": true,
-        "enableFilter": true,
         "Header_Enable_Controls": true,
         "Global_Enable_DisplayUserName": false,
         "Header_Enable_MemberNavigation": true,
         "Header_Enable_CustomHTML": {
             "enableHTML": true,
             "replaceText": "\n './headerClient1.component.html',"
-        }
+        },
+        "Header_Enable_MiniCart": false
     },
     "ORXe3-Client2": {
         "enableSorting": false,
-        "enableFilter": false,
         "Header_Enable_Controls": false,
-        "Global_Enable_DisplayUserName": true,
-        "Header_Enable_MemberNavigation": true
+        "Global_Enable_DisplayUserName": false,
+        "Header_Enable_MemberNavigation": false,
+        "Header_Enable_CustomHTML": {
+            "enableHTML": false,
+            "replaceText": ""
+        },
+        "Header_Enable_MiniCart": false
     }
 }
