@@ -1,3 +1,4 @@
-@import 'theme.scss';
+@import '../root/main.scss';
+@import './theme/theme.scss';
 @import '_typography.scss';
-@import '../root/_root.scss';
+@import '../root/header/_header.scss';

@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
         return url;
       }
     },
-    LogoUrl: 'http://localhost:1828/Uploads/Sites/BaseResponsive/Themes/Default/images/branding/logo_header.svg',
+    LogoUrl: 'https://t2-www.cxtrvl.com/Uploads/Sites/BaseResponsive/Themes/Default/images/branding/logo_header.svg',
     Settings: {
       User: {
         Name: {

@@ -1,5 +1,6 @@
-@import 'theme/theme.scss'; 
-@import 'theme/_typography.scss';
+@import './main.scss';
+@import './header/_header.scss';
+@import './theme/_typography.scss';
 
 .hotelresults-list-container {
     background-color: $hotel-container-bg;

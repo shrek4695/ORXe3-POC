@@ -23,9 +23,9 @@
     },
     "ORXe3-Client2": {
         "enableSorting": false,
-        "Header_Enable_Controls": false,
+        "Header_Enable_Controls": true,
         "Global_Enable_DisplayUserName": false,
-        "Header_Enable_MemberNavigation": false,
+        "Header_Enable_MemberNavigation": true,
         "Header_Enable_CustomHTML": {
             "enableHTML": false,
             "replaceText": ""
